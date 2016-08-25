@@ -65,5 +65,3 @@
 --------------------------------------------------------------------------------
 
 　ChebyshevPolynomialBdGにはEigen projectによるEigenを使用しています。こちらのラ　イセンスはMPL2になります。
-  thomasfermiにはGNU ProjectによるGNU Scientific Libraryを使用しています。こち
-　らのライセンスは GNU General Public License になります。
