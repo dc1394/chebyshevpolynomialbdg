@@ -13,25 +13,6 @@ namespace chebyshevpolynomialbdg {
             vec_delta_(Chev::LN_2, Chev::LN_2)
     {
         std::cout.setf(std::ios::fixed, std::ios::floatfield);
-        
-        //for (auto ii = 0; ii < Chev::LN; ii++) {
-        //    for (auto jj = 0; jj < Chev::LN; jj++) {
-        //        std::cout << A_.coeff(ii, jj) << " ";
-        //    }
-        //    std::cout << std::endl;
-        //}
-        //Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> es(A_);
-        //auto w = es.eigenvalues();
-        //auto v = es.eigenvectors();
-        //std::cout << w << std::endl;
-        //for (auto ii = 0; ii < v.rows(); ii++) {
-        //    for (auto jj = 0; jj < v.cols(); jj++) {
-        //        std::cout << v.coeff(ii, jj) << " ";
-        //    }
-        //    std::cout << std::endl;
-        //}
-
-        //calc_polynomials(1, 1 + Chev::LN_2);
     }
 
     // #endregion コンストラクタ
@@ -53,26 +34,10 @@ namespace chebyshevpolynomialbdg {
             else {
                 calc_meanfields<false>();
             }
-            
-            //for (auto ii = 0; ii < Chev::LN_2; ii++) {
-            //    for (auto jj = 0; jj < Chev::LN_2; jj++) {
-            //        std::cout << vec_delta_.coeff(ii, jj) << " ";
-            //    }
-            //    std::cout << std::endl;
-            //}
 
             vec_delta_ = vec_delta_ * Chev::U;
 
             calc_A2();
-
-            //for (auto ii = 0; ii < Chev::LN; ii++) {
-            //    for (auto jj = 0; jj < Chev::LN; jj++) {
-            //        std::cout << A_.coeff(ii, jj) << " ";
-            //    }
-            //    std::cout << std::endl;
-            //}
-
-            //auto i = 0;
 
             auto eps = 0.0;
             auto nor = 0.0;
@@ -205,6 +170,7 @@ namespace chebyshevpolynomialbdg {
         vec_jn(right_j) = 1.0;
         vec_ai_.fill(0.0);
 
+        auto const A = A_.toDense();
         for (auto n = 0; n < Chev::NC; n++) {
             auto v = 0.0;
             switch (n) {
@@ -217,11 +183,11 @@ namespace chebyshevpolynomialbdg {
                 break;
 
             case 1:
-                vec_jn = A_ * vec_jn;
+                vec_jn = A * vec_jn;
                 break;
 
             default:
-                vec_jn = 2.0 * A_ * vec_jnm - vec_jnmm;
+                vec_jn = 2.0 * A * vec_jnm - vec_jnmm;
                 break;
             }
 
