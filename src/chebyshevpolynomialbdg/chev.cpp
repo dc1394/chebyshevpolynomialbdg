@@ -1,12 +1,19 @@
+ï»¿/*! \file foelement.cpp
+    \brief Bogoliubov-de Gennesæ–¹ç¨‹å¼ã‚’è§£ãã‚¯ãƒ©ã‚¹ã®å®Ÿè£…
+    Copyright Â©  2016 @dc1394 All Rights Reserved.
+    (but this is originally adapted by cometscome for Chev.py from https://github.com/cometscome/ChebyshevPolynomialBdG )
+    This software is released under the BSD 2-Clause License.
+*/
+
 #include "chev.h"
 #include <cmath>                // for std::acos, for std::sin
-#include <vector>               // for std::vector
 #include <iomanip>              // for std::setprecision
 #include <iostream>             // for std::cout
+#include <vector>               // for std::vector
 #include <Eigen/EigenValues>    // for Eigen::SelfAdjointEigenSolver
 
 namespace chebyshevpolynomialbdg {
-    // #region ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    // #region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
     Chev::Chev()
         :   vec_ai_(Chev::NC),
@@ -15,9 +22,9 @@ namespace chebyshevpolynomialbdg {
         std::cout.setf(std::ios::fixed, std::ios::floatfield);
     }
 
-    // #endregion ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    // #endregion ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-    // #region publicƒƒ“ƒoŠÖ”
+    // #region publicãƒ¡ãƒ³ãƒé–¢æ•°
 
     void Chev::iteration(bool full)
     {
@@ -58,9 +65,9 @@ namespace chebyshevpolynomialbdg {
         }
     }
 
-    // #region publicƒƒ“ƒoŠÖ”
+    // #region publicãƒ¡ãƒ³ãƒé–¢æ•°
 
-    // #region privateƒƒ“ƒoŠÖ”
+    // #region privateãƒ¡ãƒ³ãƒé–¢æ•°
 
     void Chev::calc_A()
     {
@@ -167,19 +174,18 @@ namespace chebyshevpolynomialbdg {
         vec_jnm.fill(0.0);
         vec_jnmm.fill(0.0);
 
-        vec_jn(right_j) = 1.0;
+        vec_jn.coeffRef(right_j) = 1.0;
         vec_ai_.fill(0.0);
 
         auto const A = A_.toDense();
         for (auto n = 0; n < Chev::NC; n++) {
-            auto v = 0.0;
             switch (n) {
             case 0:
                 vec_jnm.resize(1);
                 vec_jnm.fill(0.0);
                 vec_jnmm.resize(1);
                 vec_jnmm.fill(0.0);
-                vec_jn[right_j] = 1.0;
+                vec_jn.coeffRef(right_j) = 1.0;
                 break;
 
             case 1:
@@ -191,7 +197,7 @@ namespace chebyshevpolynomialbdg {
                 break;
             }
 
-            vec_ai_[n] = vec_jn[left_i];
+            vec_ai_[n] = vec_jn.coeff(left_i);
             vec_jnmm = vec_jnm;
             vec_jnm = vec_jn;
         }
@@ -212,5 +218,5 @@ namespace chebyshevpolynomialbdg {
         return iy * Chev::NX + ix;
     }
 
-    // #endregion privateƒƒ“ƒoŠÖ”
+    // #endregion privateãƒ¡ãƒ³ãƒé–¢æ•°
 }

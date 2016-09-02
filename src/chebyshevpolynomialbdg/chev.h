@@ -1,21 +1,32 @@
+ï»¿/*! \file chev.h
+    \brief Bogoliubov-de Gennesæ–¹ç¨‹å¼ã‚’è§£ãã‚¯ãƒ©ã‚¹ã®å®£è¨€
+    Copyright Â©  2015 @dc1394 All Rights Reserved.
+    This software is released under the BSD 2-Clause License.
+*/
+
+#ifndef _CHEV_H_
+#define _CHEV_H_
+
+#pragma once
+
 #include <cstdint>          // for std::int32_t
 #include <Eigen/Dense>      // for Eigen::SparseMatrix
 #include <Eigen/Sparse>     // for Eigen::VectorXd
 
 namespace chebyshevpolynomialbdg {
-    // #region ƒtƒŠ[ŠÖ”‚ÌéŒ¾
+    // #region ãƒ•ãƒªãƒ¼é–¢æ•°ã®å®£è¨€
 
     template <typename T>
     constexpr T sqr(T x);
 
-    // #endregion ƒtƒŠ[ŠÖ”‚ÌéŒ¾ 
+    // #endregion ãƒ•ãƒªãƒ¼é–¢æ•°ã®å®£è¨€ 
 
     //! A class.
     /*!
-        Bogoliubov-de Gennes•û’ö®‚ğ‰ğ‚­ƒNƒ‰ƒX
+        Bogoliubov-de Gennesæ–¹ç¨‹å¼ã‚’è§£ãã‚¯ãƒ©ã‚¹
     */
     class Chev final {
-        // #region ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒfƒXƒgƒ‰ƒNƒ^
+        // #region ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
     public:
         //! A constructor.
@@ -25,22 +36,22 @@ namespace chebyshevpolynomialbdg {
 
         //! A destructor.
         /*!
-            ƒfƒtƒHƒ‹ƒgƒfƒXƒgƒ‰ƒNƒ^
+            ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
         */
         ~Chev() = default;
 
-        // #endregion ƒRƒ“ƒXƒgƒ‰ƒNƒ^EƒfƒXƒgƒ‰ƒNƒ^
+        // #endregion ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-        // #region publicƒƒ“ƒoŠÖ”
+        // #region publicãƒ¡ãƒ³ãƒé–¢æ•°
 
         //! A public member function.
         /*!
         */
         void iteration(bool full);
 
-        // #endregion publicƒƒ“ƒoŠÖ”
+        // #endregion publicãƒ¡ãƒ³ãƒé–¢æ•°
         
-        // #region privateƒƒ“ƒoŠÖ”
+        // #region privateãƒ¡ãƒ³ãƒé–¢æ•°
 
     private:
 
@@ -80,9 +91,9 @@ namespace chebyshevpolynomialbdg {
         */
         std::int32_t xy2i(std::int32_t ix, std::int32_t iy) const;
 
-        // #endregion privateƒƒ“ƒoŠÖ”
+        // #endregion privateãƒ¡ãƒ³ãƒé–¢æ•°
 
-        // #region ƒƒ“ƒo•Ï”
+        // #region ãƒ¡ãƒ³ãƒå¤‰æ•°
 
         //! A private static member variable (constant expression).
         /*!
@@ -107,7 +118,7 @@ namespace chebyshevpolynomialbdg {
         //! A private static member variable (constant expression).
         /*!
         */
-        static auto constexpr ITERMAX = 100;
+        static auto constexpr ITERMAX = 2;
 
         //! A private static member variable (constant expression).
         /*!
@@ -169,34 +180,34 @@ namespace chebyshevpolynomialbdg {
         */
         Eigen::SparseMatrix<double> vec_delta_;
 
-        // #region ‹Ö~‚³‚ê‚½ƒRƒ“ƒXƒgƒ‰ƒNƒ^Eƒƒ“ƒoŠÖ”
+        // #region ç¦æ­¢ã•ã‚ŒãŸã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ãƒ¡ãƒ³ãƒé–¢æ•°
 
         private:
 
        //! A private copy constructor (deleted).
        /*!
-           ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^i‹Ö~j
-           \param ƒRƒs[Œ³‚ÌƒIƒuƒWƒFƒNƒgi–¢g—pj
+           ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ï¼ˆç¦æ­¢ï¼‰
+           \param ã‚³ãƒ”ãƒ¼å…ƒã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆæœªä½¿ç”¨ï¼‰
        */
        Chev(Chev const &) = delete;
 
        //! A private member function (deleted).
        /*!
-           operator=()‚ÌéŒ¾i‹Ö~j
-           \param ƒRƒs[Œ³‚ÌƒIƒuƒWƒFƒNƒgi–¢g—pj
-           \return ƒRƒs[Œ³‚ÌƒIƒuƒWƒFƒNƒg
+           operator=()ã®å®£è¨€ï¼ˆç¦æ­¢ï¼‰
+           \param ã‚³ãƒ”ãƒ¼å…ƒã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆï¼ˆæœªä½¿ç”¨ï¼‰
+           \return ã‚³ãƒ”ãƒ¼å…ƒã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
        */
        Chev & operator=(Chev const &) = delete;
 
-       // #endregion ‹Ö~‚³‚ê‚½ƒRƒ“ƒXƒgƒ‰ƒNƒ^Eƒƒ“ƒoŠÖ”
+       // #endregion ç¦æ­¢ã•ã‚ŒãŸã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ãƒ»ãƒ¡ãƒ³ãƒé–¢æ•°
     };
 
-    // #region templateƒƒ“ƒoŠÖ”‚ÌÀ‘•
+    // #region templateãƒ¡ãƒ³ãƒé–¢æ•°ã®å®Ÿè£…
 
     template <>
     inline void Chev::calc_meanfields<true>()
     {
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> saes(A_ * Chev::AA);
+        Eigen::SelfAdjointEigenSolver<Eigen::SparseMatrix<double, Eigen::RowMajor>> saes(A_ * Chev::AA);
         auto const w = saes.eigenvalues();
         auto const v = saes.eigenvectors();
 
@@ -235,9 +246,9 @@ namespace chebyshevpolynomialbdg {
         }
     }
 
-    // #endregion templateƒƒ“ƒoŠÖ”‚ÌÀ‘•
+    // #endregion templateãƒ¡ãƒ³ãƒé–¢æ•°ã®å®Ÿè£…
 
-    // #region templateƒtƒŠ[ŠÖ”‚ÌÀ‘•
+    // #region templateãƒ•ãƒªãƒ¼é–¢æ•°ã®å®Ÿè£…
 
     template <typename T>
     constexpr T sqr(T x)
@@ -245,5 +256,7 @@ namespace chebyshevpolynomialbdg {
         return x * x;
     }
 
-    // #endregion templateƒtƒŠ[ŠÖ”‚ÌÀ‘•
+    // #endregion templateãƒ•ãƒªãƒ¼é–¢æ•°ã®å®Ÿè£…
 }
+
+#endif  // _CHEV_H_
