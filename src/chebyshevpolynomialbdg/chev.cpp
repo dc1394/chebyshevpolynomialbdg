@@ -159,7 +159,7 @@ namespace chebyshevpolynomialbdg {
 
         auto density = 0.0;
         for (auto j = 0; j < Chev::NC - 1; j++) {
-            auto i = j + 1;
+            auto const i = j + 1;
             density += vec_ai_[i] * (std::sin(static_cast<double>(i) * omeb) - std::sin(static_cast<double>(i) * ba)) / static_cast<double>(i);
             density += vec_ai_[0] * (omeb - ba) / 2.0;
         }
@@ -177,7 +177,7 @@ namespace chebyshevpolynomialbdg {
         vec_jn.coeffRef(right_j) = 1.0;
         vec_ai_.fill(0.0);
 
-        auto const A = A_.toDense();
+        auto A = A_.toDense();
         for (auto n = 0; n < Chev::NC; n++) {
             switch (n) {
             case 0:

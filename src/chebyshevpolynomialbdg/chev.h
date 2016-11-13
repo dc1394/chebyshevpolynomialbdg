@@ -13,6 +13,9 @@
 #include <Eigen/Dense>      // for Eigen::SparseMatrix
 #include <Eigen/Sparse>     // for Eigen::VectorXd
 
+#undef EIGEN_NO_DEBUG
+#undef NDEBUG
+
 namespace chebyshevpolynomialbdg {
     // #region フリー関数の宣言
 
